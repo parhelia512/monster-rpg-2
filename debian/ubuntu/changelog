@@ -1,0 +1,199 @@
+monster-rpg2 (2.10.0-1ubuntu1) oneiric; urgency=low
+
+  * Many new features, enhancements and bug fixes.
+
+ -- Trent Gamblin <trent@nooskewl.com>  Fri, 24 Aug 2013 00:40:00 -0700
+
+monster-rpg2 (2.0.3-1ubuntu1) oneiric; urgency=low
+
+  * Added an input configuration screen
+  * Textured all of the 3D models
+  * New Russian translation
+  * Indiegogo sponsor credits at the end of the game
+  * More believable/passable "Breath of Fire" attack from the dragon
+  * Autosaves
+  * Custom mouse cursor
+  * You can inspect the library shelves to see book titles
+  * All party members close their eyes when sleeping
+  * A notice is shown when you trade for an item
+  * F8 (default) auto-sorts your inventory when in the pause->items screen
+  * In the pause menu (and other places where player profile "mug shots" are shown), a purple border is shown around poisoned members
+  * Red and green down/up arrows are shown when inspecting items, letting you know if the item is better or worse than what everyone already has
+  * The biggest window that's an integer scaling factor of the games native res will be chosen by default (if you have a config file already, delete it to get this behaviour)
+  * Odd looking tree overhangs fixed in jungle
+  * Some odd behaviour when using mouse or touch screen was fixed (clicking an object would not take you there)
+  * Fixed two tiles that were solid and not solid when they should have been opposite in the forest
+  * Alien items are now all stronger than Light items
+  * Item stacking behaviour is better in inventory
+  * Bartender's juice stacks correctly now
+  * Juice now has a distinct sound when used (used to be same as Cure)
+  * 'Squito' enemy moved very slowly without shaders, fixed.
+  * Improved look of web that sometimes covered the players.
+  * Redo solids (where you can and cannot walk) in mountain, volcano and underground because they were erratic.
+  * Can view players stats in battle with just a mouse by long-clicking.
+  * Gunnar now "walks into" you when he joins the party, like all other party-joiners.
+  * Can now control mini games with mouse only
+  * Use an SVG Nooskewl logo at game start
+  * Round icon a bit
+  * Smaller total file size
+  * Cleaned up lots of sprites, especially enemies
+  * Some remade icons (Joypad and Game Center)
+  * Render directly to screen backbuffer for better performance and high res primitives
+  * Optimize some spell effects
+  * Fix up the autosave code
+  * Guards close their eyes when asleep
+  * New Bolt1 spell effect
+  * Scroll wheel support on lists
+  * Improved auto-save behaviour
+  * Touched up a lot of sprites
+  * 1 pixel border on sprites to avoid scaling issues
+  * Higher res font
+  * Improved look of Bolt3 spell
+  * Much faster 3D scenes
+
+ -- Trent Gamblin <trent@nooskewl.com>  Wed, 3 Apr 2013 16:31:00 -0700
+
+monster-rpg2 (1.12.0-1ubuntu1) maverick; urgency=low
+
+  * Greatly improved speed and reliability of HQ music download.
+
+ -- Trent Gamblin <trent@nooskewl.com>  Wed, 8 Aug 2012 11:13:00 -0700
+
+monster-rpg2 (1.11.0-1ubuntu1) maverick; urgency=low
+
+  * Smaller file size for quicker downloads
+  * High quality music can still be downloaded at users leisure for free from
+    within the game and will play automatically when the download finishes 
+  * All new player battle sprites 
+  * All new item icons 
+  * Preserve aspect ratio mode that fills as much of the screen as it can
+    while preserving aspect 
+  * Change filtering modes without restarting the game 
+  * Massive scripting and area editing overhaul to make NPCs face you when
+    you talk to them and make high walls "above" the player 
+  * Dozens of other tweaks and fixes to improve the look and flow of the game
+ 
+ -- Trent Gamblin <trent@nooskewl.com>  Sun, 3 Jun 2012 08:37:00 -0700
+
+monster-rpg2 (1.10.0-1ubuntu1) maverick; urgency=low
+
+  * Travelling fairy helps you out when you're low on supplies
+  * Better support for Intel GPUs on Linux
+  * Loads of tweaks and improvements on a small scale
+
+ -- Trent Gamblin <trent@gamblin.ca>  Wed, 30 Nov 2011 10:21:00 -0700
+
+monster-rpg2 (1.9.6-1) maverick; urgency=low
+
+  * Workaround shader compiler weirdness in Gallium drivers.
+
+ -- Trent Gamblin <trent@gamblin.ca>  Sat, 27 Jul 2011 04:50:00 -0700
+
+monster-rpg2 (1.9.5-1) maverick; urgency=low
+
+  * Depend on monster-rpg-2-data 1.9.1.
+
+ -- Trent Gamblin <trent@gamblin.ca>  Sat, 23 Jul 2011 06:33:00 -0700
+
+monster-rpg2 (1.9.4-1) maverick; urgency=low
+
+  * Tweaks and bugfixes.
+
+ -- Trent Gamblin <trent@gamblin.ca>  Sat, 23 Jul 2011 04:57:00 -0700
+
+monster-rpg2 (1.9.3-1) maverick; urgency=low
+
+  * Made icon bigger.
+
+ -- Trent Gamblin <trent@gamblin.ca>  Tue, 19 Jul 2011 14:11:00 -0700
+
+monster-rpg2 (1.9.2-1) maverick; urgency=low
+
+  * Changed icons.
+
+ -- Trent Gamblin <trent@gamblin.ca>  Tue, 19 Jul 2011 13:41:00 -0700
+
+monster-rpg2 (1.9.1-1) maverick; urgency=low
+
+  * Bugfix in A*
+
+ -- Trent Gamblin <trent@gamblin.ca>  Tue, 19 Jul 2011 10:56:00 -0700
+
+monster-rpg2 (1.9.0-1) maverick; urgency=low
+
+  * Many new translations. Some new artwork. Many tweaks and bugfixes.
+
+ -- Trent Gamblin <trent@gamblin.ca>  Mon, 18 Jul 2011 10:04:00 -0700
+
+monster-rpg2 (1.0.8-1) maverick; urgency=low
+
+  * Packaging fixes
+
+ -- Trent Gamblin <trent@gamblin.ca>  Thu, 05 May 2011 21:55:00 -0700
+
+monster-rpg2 (1.0.7-1) maverick; urgency=low
+
+  * Added Spanish, German, and Polish translations. Many bug fixes and
+    feature enhancements.
+
+ -- Trent Gamblin <trent@gamblin.ca>  Thu, 28 Apr 2011 14:42:00 -0700
+
+monster-rpg2 (1.0.6-1) maverick; urgency=low
+
+  * fix a shader
+
+ -- Thomas Fjellstrom <thomas@fjellstrom.ca>  Tue, 08 Mar 2011 14:14:23 -0700
+
+monster-rpg2 (1.0.5-1) maverick; urgency=low
+
+  * compile fix
+
+ -- Thomas Fjellstrom <thomas@fjellstrom.ca>  Tue, 08 Mar 2011 02:05:51 -0700
+
+monster-rpg2 (1.0.4-1) maverick; urgency=low
+
+  * fix linking issue
+
+ -- Thomas Fjellstrom <thomas@fjellstrom.ca>  Tue, 08 Mar 2011 01:34:53 -0700
+
+monster-rpg2 (1.0.3-1ubuntu2) maverick; urgency=low
+
+  * increment version so launchpad accepts the package
+
+ -- Thomas Fjellstrom <thomas@fjellstrom.ca>  Mon, 07 Mar 2011 22:53:53 -0700
+
+monster-rpg2 (1.0.3-1) maverick; urgency=low
+
+  * more svn updates
+
+ -- Thomas Fjellstrom <thomas@fjellstrom.ca>  Mon, 07 Mar 2011 21:54:12 -0700
+
+monster-rpg2 (1.0.2-1) maverick; urgency=low
+
+  * another svn update, plenty of fixes
+
+ -- Thomas Fjellstrom <thomas@fjellstrom.ca>  Sat, 05 Mar 2011 17:42:31 -0700
+
+monster-rpg2 (1.0.1-1ubuntu1) maverick; urgency=low
+
+  * updates from svn
+
+ -- Thomas Fjellstrom <thomas@fjellstrom.ca>  Fri, 04 Mar 2011 15:06:00 -0700
+
+monster-rpg2 (1.0-1ubuntu2) maverick; urgency=low
+
+  * fix dependency issue in debian/rules file, should allow parallel makes to work
+
+ -- Thomas Fjellstrom <thomas@fjellstrom.ca>  Tue, 01 Mar 2011 17:41:01 -0700
+
+monster-rpg2 (1.0-1ubuntu1) maverick; urgency=low
+
+  * fix some build dependency issues, actually tested with pbuilder this time.
+
+ -- Thomas Fjellstrom <thomas@fjellstrom.ca>  Tue, 01 Mar 2011 14:53:13 -0700
+
+monster-rpg2 (1.0-1) maverick; urgency=low
+
+  * Initial release
+
+ -- Thomas Fjellstrom <thomas@fjellstrom.ca>  Sat, 26 Feb 2011 19:07:29 -0700
