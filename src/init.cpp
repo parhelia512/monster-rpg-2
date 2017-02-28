@@ -248,7 +248,9 @@ void do_milestone(int num, bool visual)
 		if (num+1 == ach[i]) {
 			char s[100];
 			sprintf(s, "%d", i+1);
-			g_SteamAchievements->SetAchievement(s);
+			if (g_SteamAchievements) {
+				g_SteamAchievements->SetAchievement(s);
+			}
 			return;
 		}
 	}
