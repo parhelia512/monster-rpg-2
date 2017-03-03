@@ -1454,11 +1454,12 @@ bool init(int *argc, char **argv[])
 #ifdef STEAMWORKS
 // Initialize Steam
 bool bRet = SteamAPI_Init();
+std::string steam_language;
 // Create the SteamAchievements object if Steam was successfully initialized
 if (bRet)
 {
 	g_SteamAchievements = new CSteamAchievements(g_Achievements, NUM_ACHIEVEMENTS);
-	std::string steam_language = GetCurrentGameLanguage();
+	steam_language = SteamApps()->GetCurrentGameLanguage();
 }
 #endif
 
@@ -1538,23 +1539,23 @@ if (bRet)
 
 #ifdef STEAMWORKS
 	if (config_read == false) {
-static std::string languages[][2] = {
-	{ "English", "english" },
-	{ "Dutch", "dutch" },
-	{ "French", "french" },
-	{ "German", "german" },
-	{ "Greek", "greek" },
-	{ "Italian", "italian" },
-	{ "Polish", "polish" },
-	{ "Portuguese-Brazil", "brazilian" },
-	{ "Portuguese-Europe", "portugeuse" },
-	{ "Spanish", "spanish" },
-	{ "Russian", "russian" },
-	{ "", "" }
-};
-		for (int i = 0; languages[i][0] != ""; i++) {
-			if (languages[i][1] == steam_language) {
-				config.setLanguage(languages[i][0]);
+		static std::string languages[] = { // same order as translate.cpp
+			{ "english" },
+			{ "dutch" },
+			{ "french" },
+			{ "german" },
+			{ "greek" },
+			{ "italian" },
+			{ "polish" },
+			{ "brazilian" },
+			{ "portugeuse" },
+			{ "spanish" },
+			{ "russian" },
+			{ "" }
+		};
+		for (int i = 0; languages[i] != ""; i++) {
+			if (languages[i] == steam_language) {
+				config.setLanguage(i);
 				break;
 			}
 		}
