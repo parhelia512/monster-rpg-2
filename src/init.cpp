@@ -1451,16 +1451,16 @@ bool gamepadConnected()
 
 bool init(int *argc, char **argv[])
 {
+	std::string system_language = "english";
 #ifdef STEAMWORKS
-// Initialize Steam
-bool bRet = SteamAPI_Init();
-std::string steam_language;
-// Create the SteamAchievements object if Steam was successfully initialized
-if (bRet)
-{
-	g_SteamAchievements = new CSteamAchievements(g_Achievements, NUM_ACHIEVEMENTS);
-	steam_language = SteamApps()->GetCurrentGameLanguage();
-}
+	// Initialize Steam
+	bool bRet = SteamAPI_Init();
+	// Create the SteamAchievements object if Steam was successfully initialized
+	if (bRet)
+	{
+		g_SteamAchievements = new CSteamAchievements(g_Achievements, NUM_ACHIEVEMENTS);
+		system_language = SteamApps()->GetCurrentGameLanguage();
+	}
 #endif
 
 	myArgc = *argc;
@@ -1496,6 +1496,10 @@ if (bRet)
 		printf("al_init failed.\n");
 		exit(1);
 	}
+
+#if defined ALLEGRO_ANDROID
+	system_language = get_android_language();
+#endif
 
 #if !defined ALLEGRO_IPHONE
 	if (al_install_joystick()) {
@@ -1537,30 +1541,28 @@ if (bRet)
 		(void)e;
 	}
 
-#ifdef STEAMWORKS
 	if (config_read == false) {
 		static std::string languages[] = { // same order as translate.cpp
-			{ "english" },
-			{ "dutch" },
-			{ "french" },
-			{ "german" },
-			{ "greek" },
-			{ "italian" },
-			{ "polish" },
-			{ "brazilian" },
-			{ "portugeuse" },
-			{ "spanish" },
-			{ "russian" },
-			{ "" }
+			"english",
+			"dutch",
+			"french",
+			"german",
+			"greek",
+			"italian",
+			"polish",
+			"brazilian",
+			"portugeuse",
+			"spanish",
+			"russian",
+			""
 		};
 		for (int i = 0; languages[i] != ""; i++) {
-			if (languages[i] == steam_language) {
+			if (languages[i] == system_language) {
 				config.setLanguage(i);
 				break;
 			}
 		}
 	}
-#endif
 
 	debug_message("config read");
 

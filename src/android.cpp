@@ -116,19 +116,6 @@ const char * get_sdcarddir()
 	return buf;
 }
 
-/*
-void goHome()
-{
-	_jni_callVoidMethodV(
-		_al_android_get_jnienv(),
-		_al_android_activity_object(),
-		"goHome",
-		"()V"
-	);
-
-}
-*/
-
 bool isAndroidConsole()
 {
 #if defined OUYA
@@ -217,42 +204,6 @@ void logString(const char *s)
 	);
 	
 	_al_android_get_jnienv()->DeleteLocalRef(S);
-}
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-static float backup_music_volume, backup_ambience_volume;
-
-JNIEXPORT void JNICALL Java_ca_nooskewl_monsterrpg2_MyBroadcastReceiver_pauseSound
-  (JNIEnv *env, jobject obj)
-{
-	backup_music_volume = getMusicVolume();
-	backup_ambience_volume = getAmbienceVolume();
-	setMusicVolume(0.0);
-	setAmbienceVolume(0.0);
-}
-
-JNIEXPORT void JNICALL Java_ca_nooskewl_monsterrpg2_MyBroadcastReceiver_resumeSound
-  (JNIEnv *env, jobject obj)
-{
-	music_replayed = false;
-}
-
-JNIEXPORT void JNICALL Java_com_nooskewl_monsterrpg2_MyBroadcastReceiver_pauseSound
-  (JNIEnv *env, jobject obj)
-{
-	backup_music_volume = getMusicVolume();
-	backup_ambience_volume = getAmbienceVolume();
-	setMusicVolume(0.0);
-	setAmbienceVolume(0.0);
-}
-
-JNIEXPORT void JNICALL Java_com_nooskewl_monsterrpg2_MyBroadcastReceiver_resumeSound
-  (JNIEnv *env, jobject obj)
-{
-	music_replayed = false;
 }
 
 #define NUM_ACHIEVEMENTS 30
@@ -405,9 +356,6 @@ void init_play_services()
 		"()V"
 	);
 }
-#ifdef __cplusplus
-}
-#endif
 
 void show_achievements()
 {
@@ -426,6 +374,65 @@ int amazon_initialized()
 		_al_android_activity_object(),
 		"initialized"
 	);
+}
+
+const char *get_android_language()
+{
+	static char buf[100];
+
+	jstring s =
+		(jstring)_jni_callObjectMethod(
+			_al_android_get_jnienv(),
+			_al_android_activity_object(),
+			"get_android_language",
+			"()Ljava/lang/String;"
+		);
+
+	if (s == NULL)
+		return "";
+
+	const char *native = _al_android_get_jnienv()->GetStringUTFChars(s, 0);
+
+	strcpy(buf, native);
+
+	_al_android_get_jnienv()->ReleaseStringUTFChars(s, native);
+
+	_al_android_get_jnienv()->DeleteLocalRef(s);
+
+	std::string str = buf;
+
+	// convert to steam style since that was the first one we did
+	if (str == "de") {
+		str = "german";
+	}
+	else if (str == "fr") {
+		str = "french";
+	}
+	else if (str == "nl") {
+		str = "dutch";
+	}
+	else if (str == "el") {
+		str = "greek";
+	}
+	else if (str == "it") {
+		str = "italian";
+	}
+	else if (str == "pl") {
+		str = "polish";
+	}
+	else if (str == "pt") {
+		str = "portuguese";
+	}
+	else if (str == "ru") {
+		str = "russian";
+	}
+	else if (str == "es") {
+		str = "spanish";
+	}
+
+	strcpy(buf, str.c_str());
+
+	return buf;
 }
 
 #if defined OUYA
@@ -474,5 +481,45 @@ int checkPurchased()
 	} while (purchased == -1);
 
 	return purchased;
+}
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+static float backup_music_volume, backup_ambience_volume;
+
+JNIEXPORT void JNICALL Java_ca_nooskewl_monsterrpg2_MyBroadcastReceiver_pauseSound
+  (JNIEnv *env, jobject obj)
+{
+	backup_music_volume = getMusicVolume();
+	backup_ambience_volume = getAmbienceVolume();
+	setMusicVolume(0.0);
+	setAmbienceVolume(0.0);
+}
+
+JNIEXPORT void JNICALL Java_ca_nooskewl_monsterrpg2_MyBroadcastReceiver_resumeSound
+  (JNIEnv *env, jobject obj)
+{
+	music_replayed = false;
+}
+
+JNIEXPORT void JNICALL Java_com_nooskewl_monsterrpg2_MyBroadcastReceiver_pauseSound
+  (JNIEnv *env, jobject obj)
+{
+	backup_music_volume = getMusicVolume();
+	backup_ambience_volume = getAmbienceVolume();
+	setMusicVolume(0.0);
+	setAmbienceVolume(0.0);
+}
+
+JNIEXPORT void JNICALL Java_com_nooskewl_monsterrpg2_MyBroadcastReceiver_resumeSound
+  (JNIEnv *env, jobject obj)
+{
+	music_replayed = false;
+}
+
+#ifdef __cplusplus
 }
 #endif

@@ -121,5 +121,10 @@ public class MO2Activity extends AllegroActivity {
 	{
 		return initialize_success;
 	}
+
+	public String get_android_language()
+	{
+		return Locale.getDefault().getLanguage();
+	}
 }
 
