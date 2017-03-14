@@ -18,6 +18,10 @@ void show_achievements();
 
 const char *get_android_language();
 
+#ifdef ADMOB
+void showAd();
+#endif
+
 #if defined OUYA
 int isPurchased();
 void queryPurchased();
