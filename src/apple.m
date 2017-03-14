@@ -36,7 +36,7 @@ static Ad_Delegate *ad_delegate;
 void initAdmob()
 {
     ad_delegate = [[Ad_Delegate alloc] init];
-	interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-5564002345241286/1715397850"];
+	interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-5564002345241286/6446648655"];
     interstitial.delegate = ad_delegate;
 	requestNewInterstitial();
 }
