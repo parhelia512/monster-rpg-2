@@ -13,6 +13,10 @@
 #include "java.h"
 #endif
 
+#if defined ALLEGRO_IPHONE && defined ADMOB
+#include "apple.h"
+#endif
+
 bool on_title_screen = false;
 
 bool fairy_used = false;

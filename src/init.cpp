@@ -22,6 +22,10 @@ extern "C" {
 #include <bcm_host.h>
 #endif
 
+#if defined ALLEGRO_IPHONE && defined ADMOB
+#include "apple.h"
+#endif
+
 #include <object_filenames.hpp>
 
 #if defined NO_GAMECENTER && !defined STEAMWORKS && !defined GOOGLEPLAY && !defined AMAZON
@@ -1463,6 +1467,10 @@ bool init(int *argc, char **argv[])
 	}
 #endif
 
+#if defined ALLEGRO_IPHONE && defined ADMOB
+	initAdmob();
+#endif
+
 	myArgc = *argc;
 	myArgv = *argv;
 
@@ -1499,6 +1507,8 @@ bool init(int *argc, char **argv[])
 
 #if defined ALLEGRO_ANDROID
 	system_language = get_android_language();
+#elif defined ALLEGRO_IPHONE || defined ALLEGRO_MACOSX
+	system_language = get_apple_language();
 #endif
 
 #if !defined ALLEGRO_IPHONE

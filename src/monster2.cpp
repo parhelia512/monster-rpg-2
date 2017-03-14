@@ -1120,12 +1120,14 @@ top:
 				if (event.type == ALLEGRO_EVENT_DISPLAY_RESUME_DRAWING) {
 					break;
 				}
+#ifdef ALLEGRO_ANDROID
 				else if (event.type == ALLEGRO_EVENT_DISPLAY_SWITCH_IN) {
 					switch_in();
 				}
 				else if (event.type == ALLEGRO_EVENT_DISPLAY_SWITCH_OUT) {
 					switch_out();
 				}
+#endif
 				else if (event.type == ALLEGRO_EVENT_JOYSTICK_CONFIGURATION) {
 					al_reconfigure_joysticks();
 					int nj = al_get_num_joysticks();
