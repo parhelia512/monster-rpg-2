@@ -773,7 +773,11 @@ bool Configuration::read()
 	setDefaultInputs();
 
 	if (isAndroidConsole()) {
+#ifdef GOOGLEPLAY
+		cfg_maintain_aspect_ratio = ASPECT_FILL_SCREEN;
+#else
 		cfg_maintain_aspect_ratio = ASPECT_INTEGER;
+#endif
 	}
 	else {
 		cfg_maintain_aspect_ratio = ASPECT_MAINTAIN_RATIO;
