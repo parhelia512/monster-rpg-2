@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Monster RPG 2 Free</string>
+	<string>Monster RPG 2 Zero</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIcons</key>
@@ -23,15 +23,18 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>212801</string>
+	<string>212802</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2017 Nooskewl</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
+		<string>gamekit</string>
 		<string>gamekit</string>
 		<string>gamekit</string>
 	</array>
