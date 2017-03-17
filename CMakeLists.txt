@@ -258,21 +258,17 @@ else(WIN32)
 		if(RASPBERRYPI)
 			LIST(APPEND MAIN_LIBS GLESv2 EGL bcm_host m pthread freetype physfs png z lua5.2)
 		else()
-			if(STEAMWORKS)
-				LIST(APPEND MAIN_LIBS
-					GL
-					GLU
-					/usr/lib/i386-linux-gnu/libphysfs.a
-					/usr/lib/i386-linux-gnu/libfreetype.a
-					/usr/lib/i386-linux-gnu/libz.a
-					/usr/lib/i386-linux-gnu/libpng.a
-					/usr/lib/i386-linux-gnu/liblua5.2.a
-					pthread
-					dl
-				)
-			else()
-				LIST(APPEND MAIN_LIBS GL GLU physfs freetype z png lua5.2 pthread)
-			endif()
+			LIST(APPEND MAIN_LIBS
+				GL
+				GLU
+				/usr/lib/i386-linux-gnu/libphysfs.a
+				/usr/lib/i386-linux-gnu/libfreetype.a
+				/usr/lib/i386-linux-gnu/libz.a
+				/usr/lib/i386-linux-gnu/libpng.a
+				/usr/lib/i386-linux-gnu/liblua5.2.a
+				pthread
+				dl
+			)
 		endif()
 	endif()
 endif()
