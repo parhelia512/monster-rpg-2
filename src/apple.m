@@ -1,3 +1,5 @@
+#import <Foundation/Foundation.h>
+
 // Admob stuff
 #ifdef ADMOB
 #import <GoogleMobileAds/GoogleMobileAds.h>

@@ -27,7 +27,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2016 Nooskewl</string>
+	<string>© 2017 Nooskewl</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
