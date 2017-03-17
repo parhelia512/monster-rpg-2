@@ -1780,7 +1780,14 @@ bool init(int *argc, char **argv[])
 	int icon_flags = al_get_new_bitmap_flags();
 	al_set_new_bitmap_format(ALLEGRO_PIXEL_FORMAT_ABGR_8888_LE);
 	al_set_new_bitmap_flags(ALLEGRO_MEMORY_BITMAP);
-	ALLEGRO_BITMAP *tmp_bmp = al_load_bitmap(getResource("staff.png"));
+	ALLEGRO_BITMAP *tmp_bmp;
+	// Workaround for IceWM which doesn't like 256x256 icons
+	if (getenv("DESKTOP_SESSION") && strcasestr(getenv("DESKTOP_SESSION"), "IceWM") != NULL) {
+		tmp_bmp = al_load_bitmap(getResource("staff.png"));
+	}
+	else {
+		tmp_bmp = al_load_bitmap(getResource("staff256.png"));
+	}
 	al_x_set_initial_icon(tmp_bmp);
 	al_destroy_bitmap(tmp_bmp);
 	al_set_new_bitmap_format(icon_format);
