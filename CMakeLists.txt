@@ -247,7 +247,7 @@ else(WIN32)
 			mo2-engine
 			allegro_monolith${ALLEGRO_SUFFIX}
 			${EXTRA_LIBS}
-			Xcursor Xi Xinerama Xrandr SM ICE X11 Xext
+			Xcursor Xi Xinerama Xrandr SM ICE X11 Xext Xpm
 		)
 		if(NOT KCM_AUDIO)
 			LIST(APPEND MAIN_LIBS "${CMAKE_BINARY_DIR}/libbass.so")

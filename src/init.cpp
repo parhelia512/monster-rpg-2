@@ -26,6 +26,10 @@ extern "C" {
 #include "apple.h"
 #endif
 
+#ifdef ALLEGRO_UNIX
+#include <allegro5/allegro_x.h>
+#endif
+
 #include <object_filenames.hpp>
 
 #if defined NO_GAMECENTER && !defined STEAMWORKS && !defined GOOGLEPLAY && !defined AMAZON
@@ -1753,6 +1757,36 @@ bool init(int *argc, char **argv[])
 	al_init_image_addon();
 	al_init_primitives_addon();
 
+#ifndef NO_PHYSFS
+#ifndef ALLEGRO_MACOSX
+	ALLEGRO_PATH *exename = al_get_standard_path(ALLEGRO_EXENAME_PATH);
+#ifndef ALLEGRO_ANDROID
+	al_set_path_filename(exename, "data.zip");
+	PHYSFS_init(myArgv[0]);
+#else
+	PHYSFS_init(al_path_cstr(exename, '/'));
+#endif
+	PHYSFS_addToSearchPath(al_path_cstr(exename, '/'), 1);
+	al_destroy_path(exename);
+#else
+	PHYSFS_init(myArgv[0]);
+	PHYSFS_addToSearchPath("data.zip", 1);
+#endif
+	al_set_physfs_file_interface();
+#endif
+
+#ifdef ALLEGRO_UNIX
+	int icon_format = al_get_new_bitmap_format();
+	int icon_flags = al_get_new_bitmap_flags();
+	al_set_new_bitmap_format(ALLEGRO_PIXEL_FORMAT_ABGR_8888_LE);
+	al_set_new_bitmap_flags(ALLEGRO_MEMORY_BITMAP);
+	ALLEGRO_BITMAP *tmp_bmp = al_load_bitmap(getResource("staff.png"));
+	al_x_set_initial_icon(tmp_bmp);
+	al_destroy_bitmap(tmp_bmp);
+	al_set_new_bitmap_format(icon_format);
+	al_set_new_bitmap_flags(icon_flags);
+#endif
+
 	int flags = 0;
 
 #ifdef ALLEGRO_WINDOWS
@@ -1909,26 +1943,8 @@ bool init(int *argc, char **argv[])
 		NO_PRESERVE_TEXTURE = ALLEGRO_NO_PRESERVE_TEXTURE;
 	}
 
-#ifndef NO_PHYSFS
-#ifndef ALLEGRO_MACOSX
-	ALLEGRO_PATH *exename = al_get_standard_path(ALLEGRO_EXENAME_PATH);
-#ifndef ALLEGRO_ANDROID
-	al_set_path_filename(exename, "data.zip");
-	PHYSFS_init(myArgv[0]);
-#else
-	PHYSFS_init(al_path_cstr(exename, '/'));
-#endif
-	PHYSFS_addToSearchPath(al_path_cstr(exename, '/'), 1);
-	al_destroy_path(exename);
-#else
-	PHYSFS_init(myArgv[0]);
-	PHYSFS_addToSearchPath("data.zip", 1);
-#endif
-	al_set_physfs_file_interface();
-#endif
-
 	// Set an icon
-#if !defined ALLEGRO_IPHONE && !defined ALLEGRO_MACOSX && !defined ALLEGRO_ANDROID
+#if !defined ALLEGRO_IPHONE && !defined ALLEGRO_MACOSX && !defined ALLEGRO_ANDROID && !defined ALLEGRO_UNIX
 	int icon_format = al_get_new_bitmap_format();
 	int icon_flags = al_get_new_bitmap_flags();
 	al_set_new_bitmap_format(ALLEGRO_PIXEL_FORMAT_ABGR_8888_LE);
