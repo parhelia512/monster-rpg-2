@@ -1529,6 +1529,57 @@ std::string get_windows_language()
 }
 #endif
 
+#ifdef __linux__
+#include <langinfo.h>
+
+std::string get_linux_language()
+{
+	std::string str;
+	if (getenv("LANG")) {
+		str = getenv("LANG");
+	}
+	else {
+		str = nl_langinfo(_NL_IDENTIFICATION_LANGUAGE);
+	}
+
+	str = str.substr(0, 2);
+
+	// convert to steam style since that was the first one we did
+	if (str == "de") {
+		str = "german";
+	}
+	else if (str == "fr") {
+		str = "french";
+	}
+	else if (str == "nl") {
+		str = "dutch";
+	}
+	else if (str == "el") {
+		str = "greek";
+	}
+	else if (str == "it") {
+		str = "italian";
+	}
+	else if (str == "pl") {
+		str = "polish";
+	}
+	else if (str == "pt") {
+		str = "portuguese";
+	}
+	else if (str == "ru") {
+		str = "russian";
+	}
+	else if (str == "es") {
+		str = "spanish";
+	}
+	else {
+		str = "english";
+	}
+
+	return str;
+}
+#endif
+
 bool init(int *argc, char **argv[])
 {
 	std::string system_language = "english";
@@ -1587,6 +1638,8 @@ bool init(int *argc, char **argv[])
 	system_language = get_apple_language();
 #elif defined ALLEGRO_WINDOWS
 	system_language = get_windows_language();
+#elif defined __linux__
+	system_language = get_linux_language();
 #endif
 
 #if !defined ALLEGRO_IPHONE
