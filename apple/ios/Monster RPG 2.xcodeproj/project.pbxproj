@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		960AA5991E7C4B14004B3F2F /* Monster RPG 2 Unleashed-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 960AA5981E7C4B14004B3F2F /* Monster RPG 2 Unleashed-Info.plist */; };
 		9650E7F41B6B25090030C5EB /* 3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9650E7C41B6B25090030C5EB /* 3d.cpp */; };
 		9650E7F51B6B25090030C5EB /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9650E7C51B6B25090030C5EB /* Animation.cpp */; };
 		9650E7F61B6B25090030C5EB /* AnimationSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9650E7C61B6B25090030C5EB /* AnimationSet.cpp */; };
@@ -130,6 +131,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		960AA5981E7C4B14004B3F2F /* Monster RPG 2 Unleashed-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Monster RPG 2 Unleashed-Info.plist"; sourceTree = "<group>"; };
 		9650E7C41B6B25090030C5EB /* 3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = 3d.cpp; path = ../../src/3d.cpp; sourceTree = "<group>"; };
 		9650E7C51B6B25090030C5EB /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Animation.cpp; path = ../../src/Animation.cpp; sourceTree = "<group>"; };
 		9650E7C61B6B25090030C5EB /* AnimationSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AnimationSet.cpp; path = ../../src/AnimationSet.cpp; sourceTree = "<group>"; };
@@ -184,7 +186,7 @@
 		9660CEC91A6376BB0064D34F /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		9660CECB1A6376EA0064D34F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9660CECD1A6377260064D34F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		966BD1A71CFFCEA3002D049A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Monster RPG 2/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		966BD1A71CFFCEA3002D049A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		966BD1A91CFFCF1B002D049A /* libAllegro5_iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAllegro5_iOS.a; path = ../../../libs/ios/lib/libAllegro5_iOS.a; sourceTree = "<group>"; };
 		966BD1AA1CFFCF1B002D049A /* libbass.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbass.a; path = ../../../libs/ios/lib/libbass.a; sourceTree = "<group>"; };
 		966BD1AB1CFFCF1B002D049A /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../../libs/ios/lib/libfreetype.a; sourceTree = "<group>"; };
@@ -193,8 +195,7 @@
 		966BD1AE1CFFCF1B002D049A /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../../../libs/ios/lib/libpng.a; sourceTree = "<group>"; };
 		966BD1B51CFFD04F002D049A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		969874D91A63789700E0FD12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		96BC70BA1E782C7A001A1DFB /* Monster RPG 2 Zero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Monster RPG 2 Zero.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		96BC70BB1E782C7A001A1DFB /* Monster RPG 2 Zero-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Monster RPG 2 Zero-Info.plist"; path = "/Users/trent/code/monster-rpg-2/apple/ios/Monster RPG 2 Zero-Info.plist"; sourceTree = "<absolute>"; };
+		96BC70BA1E782C7A001A1DFB /* Monster RPG 2 Unleashed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Monster RPG 2 Unleashed.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BC70BD1E782EE6001A1DFB /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = ../../../libs/ios/lib/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		96BC70BF1E783453001A1DFB /* apple.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = apple.m; path = ../../src/apple.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -245,6 +246,7 @@
 		9650E7C31B6B24CE0030C5EB /* src */ = {
 			isa = PBXGroup;
 			children = (
+				96BC70BF1E783453001A1DFB /* apple.m */,
 				9650E82E1B6B28570030C5EB /* init.cpp */,
 				9650E7C41B6B25090030C5EB /* 3d.cpp */,
 				9650E7C51B6B25090030C5EB /* Animation.cpp */,
@@ -296,27 +298,10 @@
 		9660CE211A6369970064D34F = {
 			isa = PBXGroup;
 			children = (
-				96BC70BF1E783453001A1DFB /* apple.m */,
-				966BD1B51CFFD04F002D049A /* libz.tbd */,
-				966BD1A91CFFCF1B002D049A /* libAllegro5_iOS.a */,
-				966BD1AA1CFFCF1B002D049A /* libbass.a */,
-				966BD1AB1CFFCF1B002D049A /* libfreetype.a */,
-				966BD1AC1CFFCF1B002D049A /* liblua5.2.a */,
-				966BD1AD1CFFCF1B002D049A /* libphysfs.a */,
-				966BD1AE1CFFCF1B002D049A /* libpng.a */,
-				966BD1A71CFFCEA3002D049A /* Launch Screen.storyboard */,
-				9650E8361B6B2C030030C5EB /* GameKit.framework */,
 				9650E8301B6B28CC0030C5EB /* data.zip */,
 				9650E7C31B6B24CE0030C5EB /* src */,
-				969874D91A63789700E0FD12 /* MobileCoreServices.framework */,
-				9660CECD1A6377260064D34F /* Accelerate.framework */,
-				9660CECB1A6376EA0064D34F /* Security.framework */,
-				9660CEC91A6376BB0064D34F /* AudioUnit.framework */,
-				9660CEC71A6376640064D34F /* AVFoundation.framework */,
-				9660CEC31A6375F70064D34F /* AudioToolbox.framework */,
 				9660CE2C1A6369970064D34F /* Monster RPG 2 */,
 				9660CE2B1A6369970064D34F /* Products */,
-				96BC70BB1E782C7A001A1DFB /* Monster RPG 2 Zero-Info.plist */,
 				96BC70BC1E782EE5001A1DFB /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -325,7 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				9660CE2A1A6369970064D34F /* Monster RPG 2.app */,
-				96BC70BA1E782C7A001A1DFB /* Monster RPG 2 Zero.app */,
+				96BC70BA1E782C7A001A1DFB /* Monster RPG 2 Unleashed.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -333,6 +318,7 @@
 		9660CE2C1A6369970064D34F /* Monster RPG 2 */ = {
 			isa = PBXGroup;
 			children = (
+				966BD1A71CFFCEA3002D049A /* Launch Screen.storyboard */,
 				9660CE3E1A6369970064D34F /* Images.xcassets */,
 				9660CE2D1A6369970064D34F /* Supporting Files */,
 			);
@@ -342,6 +328,7 @@
 		9660CE2D1A6369970064D34F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				960AA5981E7C4B14004B3F2F /* Monster RPG 2 Unleashed-Info.plist */,
 				9660CE2E1A6369970064D34F /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -350,6 +337,20 @@
 		96BC70BC1E782EE5001A1DFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				966BD1B51CFFD04F002D049A /* libz.tbd */,
+				966BD1A91CFFCF1B002D049A /* libAllegro5_iOS.a */,
+				966BD1AA1CFFCF1B002D049A /* libbass.a */,
+				966BD1AB1CFFCF1B002D049A /* libfreetype.a */,
+				966BD1AC1CFFCF1B002D049A /* liblua5.2.a */,
+				966BD1AD1CFFCF1B002D049A /* libphysfs.a */,
+				966BD1AE1CFFCF1B002D049A /* libpng.a */,
+				9650E8361B6B2C030030C5EB /* GameKit.framework */,
+				969874D91A63789700E0FD12 /* MobileCoreServices.framework */,
+				9660CECD1A6377260064D34F /* Accelerate.framework */,
+				9660CECB1A6376EA0064D34F /* Security.framework */,
+				9660CEC91A6376BB0064D34F /* AudioUnit.framework */,
+				9660CEC71A6376640064D34F /* AVFoundation.framework */,
+				9660CEC31A6375F70064D34F /* AudioToolbox.framework */,
 				96BC70BD1E782EE6001A1DFB /* GoogleMobileAds.framework */,
 			);
 			name = Frameworks;
@@ -375,9 +376,9 @@
 			productReference = 9660CE2A1A6369970064D34F /* Monster RPG 2.app */;
 			productType = "com.apple.product-type.application";
 		};
-		96BC70781E782C7A001A1DFB /* Monster RPG 2 Zero */ = {
+		96BC70781E782C7A001A1DFB /* Monster RPG 2 Unleashed */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96BC70B71E782C7A001A1DFB /* Build configuration list for PBXNativeTarget "Monster RPG 2 Zero" */;
+			buildConfigurationList = 96BC70B71E782C7A001A1DFB /* Build configuration list for PBXNativeTarget "Monster RPG 2 Unleashed" */;
 			buildPhases = (
 				96BC70791E782C7A001A1DFB /* Sources */,
 				96BC70A61E782C7A001A1DFB /* Frameworks */,
@@ -387,9 +388,9 @@
 			);
 			dependencies = (
 			);
-			name = "Monster RPG 2 Zero";
+			name = "Monster RPG 2 Unleashed";
 			productName = "Monster RPG 2";
-			productReference = 96BC70BA1E782C7A001A1DFB /* Monster RPG 2 Zero.app */;
+			productReference = 96BC70BA1E782C7A001A1DFB /* Monster RPG 2 Unleashed.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -404,6 +405,7 @@
 					9660CE291A6369970064D34F = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = ZCLK6CUZ99;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 1;
@@ -433,7 +435,7 @@
 			projectRoot = "";
 			targets = (
 				9660CE291A6369970064D34F /* Monster RPG 2 */,
-				96BC70781E782C7A001A1DFB /* Monster RPG 2 Zero */,
+				96BC70781E782C7A001A1DFB /* Monster RPG 2 Unleashed */,
 			);
 		};
 /* End PBXProject section */
@@ -444,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				966BD1A81CFFCEA3002D049A /* Launch Screen.storyboard in Resources */,
+				960AA5991E7C4B14004B3F2F /* Monster RPG 2 Unleashed-Info.plist in Resources */,
 				9650E8311B6B28CC0030C5EB /* data.zip in Resources */,
 				9660CE3F1A6369970064D34F /* Images.xcassets in Resources */,
 			);
@@ -669,7 +672,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Nooskewl (ZCLK6CUZ99)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nooskewl (ZCLK6CUZ99)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -685,7 +688,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "864873aa-ae17-4cb8-94ff-095748e34691";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -698,7 +701,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Nooskewl (ZCLK6CUZ99)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nooskewl (ZCLK6CUZ99)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -714,7 +717,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "864873aa-ae17-4cb8-94ff-095748e34691";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -741,7 +744,7 @@
 					/Users/trent/code/libs/ios/include,
 					"/Users/trent/code/monster-rpg-2/include",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Monster RPG 2 Zero-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Monster RPG 2/Monster RPG 2 Unleashed-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -778,7 +781,7 @@
 					/Users/trent/code/libs/ios/include,
 					"/Users/trent/code/monster-rpg-2/include",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Monster RPG 2 Zero-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Monster RPG 2/Monster RPG 2 Unleashed-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -814,7 +817,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96BC70B71E782C7A001A1DFB /* Build configuration list for PBXNativeTarget "Monster RPG 2 Zero" */ = {
+		96BC70B71E782C7A001A1DFB /* Build configuration list for PBXNativeTarget "Monster RPG 2 Unleashed" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96BC70B81E782C7A001A1DFB /* Debug */,
