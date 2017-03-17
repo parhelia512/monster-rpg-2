@@ -780,7 +780,11 @@ bool Configuration::read()
 #endif
 	}
 	else {
+#ifdef GOOGLEPLAY
+		cfg_maintain_aspect_ratio = ASPECT_FILL_SCREEN;
+#else
 		cfg_maintain_aspect_ratio = ASPECT_MAINTAIN_RATIO;
+#endif
 	}
 
 	char buf[1000];

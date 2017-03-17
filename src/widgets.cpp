@@ -1097,7 +1097,7 @@ int config_input(int type)
 	MTextButton *apply = new MTextButton(0, 0, "Apply");
 	tguiCenterWidget(apply, BW/4, BH-6);
 
-#if !defined ALLEGRO_IPHONE && !defined ALLEGRO_ANDROID
+#if !defined ALLEGRO_IPHONE
 	MTextButton *other = new MTextButton(0, 0, type == MInputGetter::TYPE_KB ? "Gamepad" : "Keyboard");
 	tguiCenterWidget(other, BW*3/4, BH-6);
 #endif
@@ -1113,7 +1113,7 @@ int config_input(int type)
 	}
 
 	tguiAddWidget(apply);
-#if !defined ALLEGRO_IPHONE && !defined ALLEGRO_ANDROID
+#if !defined ALLEGRO_IPHONE
 	tguiAddWidget(other);
 #endif
 
@@ -1210,7 +1210,7 @@ int config_input(int type)
 						notify("", "Done", "");
 					}
 				}
-#if !defined ALLEGRO_IPHONE && !defined ALLEGRO_ANDROID
+#if !defined ALLEGRO_IPHONE
 				else if (widget == other) {
 					if (type == MInputGetter::TYPE_KB) {
 						ret = MInputGetter::TYPE_GAMEPAD;
@@ -1256,7 +1256,7 @@ done:
 	}
 
 	delete apply;
-#if !defined ALLEGRO_IPHONE && !defined ALLEGRO_ANDROID
+#if !defined ALLEGRO_IPHONE
 	delete other;
 #endif
 
@@ -2015,6 +2015,7 @@ bool MInputGetter::acceptsFocus()
 void MInputGetter::mouseDown(int mx, int my, int mb)
 {
 	mode = NORMAL;
+	getting_input_config = false;
 }
 
 MInputGetter::MInputGetter(int type, int x, int y, int w, std::string text, int start_value)
