@@ -443,7 +443,7 @@ SteamAPI_RunCallbacks();
 #ifdef ADMOB
 	if (check_internet_connection) {
 		while (connected_to_internet() == false) {
-			notify("Please connect", "to the internet...", "");
+			notify(_t("Please connect"), _t("to the internet..."), "");
 		}
 	}
 #endif
