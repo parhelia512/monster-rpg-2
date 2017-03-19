@@ -309,7 +309,7 @@ extern std::vector<std::pair<int, bool> > forced_milestones;
 extern bool gonna_fade_in_red;
 
 void update_orientation();
-bool is_close_pressed(bool pump_events_only = false);
+bool is_close_pressed(bool pump_events_only = false, bool check_internet_connection = true);
 #define pump_events() is_close_pressed(true)
 
 void connect_second_display();

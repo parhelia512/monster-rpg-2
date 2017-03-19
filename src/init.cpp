@@ -1533,7 +1533,7 @@ std::string get_windows_language()
 }
 #endif
 
-#ifdef __linux__
+#ifdef ALLEGRO_UNIX
 #include <langinfo.h>
 
 std::string get_linux_language()
@@ -1642,7 +1642,7 @@ bool init(int *argc, char **argv[])
 	system_language = get_apple_language();
 #elif defined ALLEGRO_WINDOWS
 	system_language = get_windows_language();
-#elif defined __linux__
+#elif defined ALLEGRO_UNIX
 	system_language = get_linux_language();
 #endif
 
@@ -2097,7 +2097,9 @@ bool init(int *argc, char **argv[])
 
 	debug_message("setting window title\n");
 
-#ifdef DEMO
+#if defined ADMOB
+	al_set_window_title(display, "Monster RPG 2 Unleashed");
+#elif defined DEMO
 	al_set_window_title(display, "Monster RPG 2 Demo");
 #else
 	al_set_window_title(display, "Monster RPG 2");

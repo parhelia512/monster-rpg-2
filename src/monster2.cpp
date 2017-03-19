@@ -426,7 +426,7 @@ void get_mouse_pos_in_buffer_coords(int *this_x, int *this_y)
 }
 
 // called from everywhere
-bool is_close_pressed(bool pump_events_only)
+bool is_close_pressed(bool pump_events_only, bool check_internet_connection)
 {
 #ifdef STEAMWORKS
 SteamAPI_RunCallbacks();
@@ -439,6 +439,14 @@ SteamAPI_RunCallbacks();
 
 	/* On OUYA the menu button press/release events come at the same time so we need a workaround. */
 	menu_pressed = false;
+
+#ifdef ADMOB
+	if (check_internet_connection) {
+		while (connected_to_internet() == false) {
+			notify("Please connect", "to the internet...", "");
+		}
+	}
+#endif
 
 #ifdef ALLEGRO_ANDROID	
 top:

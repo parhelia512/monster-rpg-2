@@ -1,25 +1,13 @@
 package ca.nooskewl.monsterrpg2ads;
 
 import org.liballeg.android.AllegroActivity;
-import android.net.Uri;
 import android.content.Intent;
-import android.text.ClipboardManager;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import java.io.File;
-import android.view.KeyEvent;
 import android.util.Log;
-import android.app.ActivityManager;
 import android.os.Bundle;
-import java.io.*;
-import android.util.*;
-import java.util.*;
-import java.security.spec.*;
+import java.util.Locale;
 import android.app.Activity;
-import android.view.View;
 import android.content.IntentFilter;
-
 import android.app.Dialog;
 import android.support.v4.app.DialogFragment;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -32,10 +20,9 @@ import com.google.android.gms.games.Games;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdListener;
-import android.os.Handler;
-import android.os.Looper;
 import android.content.IntentSender.SendIntentException;
 import android.content.DialogInterface;
+import java.net.InetAddress;
 
 public class MO2Activity extends AllegroActivity implements ConnectionCallbacks, OnConnectionFailedListener
 {
@@ -58,6 +45,7 @@ public class MO2Activity extends AllegroActivity implements ConnectionCallbacks,
 
 	MyBroadcastReceiver bcr;
 	InterstitialAd mInterstitialAd;
+	boolean connected = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +66,28 @@ public class MO2Activity extends AllegroActivity implements ConnectionCallbacks,
 		});
 
 		requestNewInterstitial();
+
+		boolean thread_started = false;
+		do {
+			try {
+				Thread t = new Thread(new Runnable() {
+					public void run() {
+						while (true) {
+							try {
+								connected = InetAddress.getByName("nooskewl.ca").isReachable(30000);
+							}
+							catch (Exception e) {
+								connected = false;
+							}
+						}
+					}
+				});
+				t.start();
+				thread_started = true;
+			}
+			catch (Exception e) {
+			}
+		} while (thread_started == false);
 	}
 	
 	public void onPause() {
@@ -275,6 +285,11 @@ public class MO2Activity extends AllegroActivity implements ConnectionCallbacks,
 				}
 			}
 		});
+	}
+
+	public boolean connected_to_internet()
+	{
+		return connected;
 	}
 }
 

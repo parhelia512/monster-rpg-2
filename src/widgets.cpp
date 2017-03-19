@@ -640,7 +640,7 @@ void notify(std::string msg1, std::string msg2, std::string msg3)
 			next_input_event_ready = true;
 
 			tmp_counter--;
-			if (is_close_pressed()) {
+			if (is_close_pressed(false, false)) {
 				do_close();
 				close_pressed = false;
 			}
