@@ -1599,7 +1599,7 @@ bool init(int *argc, char **argv[])
 #endif
 
 #if defined ALLEGRO_IPHONE && defined ADMOB
-	initAdmob();
+    requestNewInterstitial();
 #endif
 
 	myArgc = *argc;

@@ -1,7 +1,7 @@
 #ifndef PAUSE_HPP
 #define PAUSE_HPP
 
-bool pause(bool can_save, bool change_music_volume = true, std::string mapName = "");
+bool pause(bool can_save, bool change_music_volume = true, std::string mapName = "", bool show_ad = true);
 void doMap(std::string start, std::string prefix = "map");
 void doShop(std::string name, const char *imageName, int nItems,
 	int *indexes, int *costs);

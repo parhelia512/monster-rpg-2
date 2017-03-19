@@ -1,10 +1,19 @@
 #include "monster2.hpp"
 
-
 unsigned char memory_save[20000];
 int memory_save_offset = 0;
 bool using_memory_save = false;
 bool memory_saved = false;
+
+struct GzStuff {
+	gzFile f;
+	int size;
+	unsigned char *bytes;
+	int pos;
+    bool read;
+};
+
+std::vector<GzStuff> gzfiles;
 
 
 /*
@@ -34,19 +43,34 @@ void iputl(long l, gzFile f)
 	}
 }
 
+int my_pack_getc(gzFile f)
+{
+	int index = 0;
+	for (size_t i = 0; i < gzfiles.size(); i++) {
+		if (gzfiles[i].f == f) {
+			index = i;
+			break;
+		}
+	}
+	if (gzfiles[index].pos >= gzfiles[index].size) {
+		return -1;
+	}
+	int c = gzfiles[index].bytes[gzfiles[index].pos++];
+	return c;
+}
 
 /*
  * Read 32 bits, little endian
  */
 uint32_t igetl(gzFile f)
 {
-	int c1 = gzgetc(f);
+	int c1 = my_pack_getc(f);
 	if (c1 == -1) throw ReadError();
-	int c2 = gzgetc(f);
+	int c2 = my_pack_getc(f);
 	if (c2 == -1) throw ReadError();
-	int c3 = gzgetc(f);
+	int c3 = my_pack_getc(f);
 	if (c3 == -1) throw ReadError();
-	int c4 = gzgetc(f);
+	int c4 = my_pack_getc(f);
 	if (c4 == -1) throw ReadError();
 	return (uint32_t)((long)c1 | ((long)c2 << 8) | ((long)c3 << 16) | ((long)c4 << 24));
 }
@@ -60,13 +84,6 @@ void my_pack_putc(int c, gzFile f)
 		if (gzputc(f, c) == EOF)
 			throw WriteError();
 	}
-}
-
-
-int my_pack_getc(gzFile f)
-{
-	int c = gzgetc(f);
-	return c;
 }
 
 
@@ -102,7 +119,7 @@ void writeString(const char* s, gzFile f)
 static bool readMilestones(bool* ms, int num, gzFile f)
 {
 	for (int i = 0; i < num/8; i++) {
-		int c = gzgetc(f);
+		int c = my_pack_getc(f);
 		if (c == EOF) {
 			forced_milestones.clear();
 			return false;
@@ -314,7 +331,7 @@ void saveGame(const char* filename, std::string mapArea)
 {
 	gzFile f = NULL;
 	if (!using_memory_save) {
-		f = gzopen(filename, "wb9");
+		f = my_gzopen(filename, "wb9");
 		if (!f)
 			throw WriteError();
 	}
@@ -337,7 +354,7 @@ void saveGame(const char* filename, std::string mapArea)
 
 	if (!writeMilestones(gameInfo.milestones, MAX_MILESTONES, f)) {
 		if (f) {
-			gzclose(f);
+			my_gzclose(f);
 		}
 		throw WriteError();
 	}
@@ -365,13 +382,13 @@ void saveGame(const char* filename, std::string mapArea)
 	}
 	catch (...) {
 		if (f) {
-			gzclose(f);
+			my_gzclose(f);
 		}
 		throw WriteError();
 	}
 
 	if (!using_memory_save) {
-		gzclose(f);
+		my_gzclose(f);
 	}
 }
 
@@ -379,7 +396,7 @@ void saveGame(const char* filename, std::string mapArea)
 bool loadGame(const char* filename)
 {
 	gzFile f = NULL;
-	f = gzopen(filename, "rb");
+	f = my_gzopen(filename, "rb");
 	if (!f)
 		throw ReadError();
 
@@ -421,11 +438,11 @@ bool loadGame(const char* filename)
 		mapArea = std::string(readString(f));
 	}
 	catch (...) {
-		gzclose(f);
+		my_gzclose(f);
 		throw ReadError();
 	}
 
-	gzclose(f);
+	my_gzclose(f);
 
 	bool ret;
 	
@@ -460,7 +477,7 @@ void saveTime(char *filename)
 
 	std::vector<int> bytes;
 	gzFile f = NULL;
-	f = gzopen(filename, "rb");
+	f = my_gzopen(filename, "rb");
 	if (!f)
 		return;
 	
@@ -471,7 +488,7 @@ void saveTime(char *filename)
 		bytes.push_back(i);
 	}
 
-	gzclose(f);
+	my_gzclose(f);
 
 	// Calculate position of time
 	
@@ -509,13 +526,13 @@ void saveTime(char *filename)
 	bytes[offs+3] = (runtime >> 24) & 0xff;
 
 	// write it
-	f = gzopen(filename, "wb9");
+	f = my_gzopen(filename, "wb9");
 
 	for (int i = 0; i < (int)bytes.size(); i++) {
 		my_pack_putc(bytes[i], f);
 	}
 
-	gzclose(f);
+	my_gzclose(f);
 	#undef STRLEN
 }
 
@@ -523,7 +540,7 @@ void saveTime(char *filename)
 void getSaveStateInfo(int num, SaveStateInfo &info, bool autosave)
 {
 	gzFile f = NULL;
-	f = gzopen(getUserResource("%s%d.save", autosave ? "auto" : "", num), "rb");
+	f = my_gzopen(getUserResource("%s%d.save", autosave ? "auto" : "", num), "rb");
 	if (!f) {
 		memset(&info, 0, sizeof(SaveStateInfo));
 		return;
@@ -537,7 +554,7 @@ void getSaveStateInfo(int num, SaveStateInfo &info, bool autosave)
 
 		int hspot = igetl(f); // skip herospot
 
-		readString(f); // skip area name
+        std::string s = readString(f); // skip area name
 		igetl(f);
 		igetl(f); // skip x, y
 
@@ -593,11 +610,62 @@ void getSaveStateInfo(int num, SaveStateInfo &info, bool autosave)
 		info.gold = igetl(f);
 	}
 	catch (...) {
+        printf("caught...\n");
+        printf("pos=%d size=%d\n", gzfiles[0].pos, gzfiles[0].size);
+        
 		memset(&info, 0, sizeof(info));
-		gzclose(f);
+		my_gzclose(f);
 		return;
 	}
 
-	gzclose(f);
+	my_gzclose(f);
 }
 
+gzFile my_gzopen(const char *filename, const char *flags)
+{
+    GzStuff s;
+    int size = 0;
+    if (flags[0] == 'r') {
+        s.read = true;
+        FILE *f = fopen(filename, "rb");
+        if (f == NULL) {
+            return NULL;
+        }
+        fseek(f, -4, SEEK_END);
+        int b1 = fgetc(f);
+        int b2 = fgetc(f);
+        int b3 = fgetc(f);
+        int b4 = fgetc(f);
+        size = b1 | (b2 << 8) | (b3 << 16) | (b4 << 24);
+        s.size = size;
+        s.bytes = new unsigned char[size];
+        s.pos = 0;
+        fclose(f);
+    }
+    else {
+        s.read = false;
+    }
+	gzFile file = gzopen(filename, flags);
+	s.f = file;
+    if (s.read) {
+        gzread(file, s.bytes, size);
+    }
+	gzfiles.push_back(s);
+    return s.f;
+}
+
+void my_gzclose(gzFile f)
+{
+	int index = 0;
+	for (size_t i = 0; i < gzfiles.size(); i++) {
+		if (gzfiles[i].f == f) {
+			index = i;
+			break;
+		}
+	}
+    if (gzfiles[index].read) {
+        delete[] gzfiles[index].bytes;
+    }
+    gzclose(gzfiles[index].f);
+	gzfiles.erase(gzfiles.begin() + index);
+}

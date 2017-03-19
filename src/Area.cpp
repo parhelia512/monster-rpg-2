@@ -148,12 +148,12 @@ void save_auto_save_to_disk()
 	}
 
 	shift_auto_saves();
-	gzFile f = gzopen(getUserResource("auto0.save"), "wb9");
+	gzFile f = my_gzopen(getUserResource("auto0.save"), "wb9");
 	if (f) {
 		for (int i = 0; i < memory_save_offset; i++) {
 			gzputc(f, memory_save[i]);
 		}
-		gzclose(f);
+		my_gzclose(f);
 	}
 
 	memory_saved = false;
@@ -1824,7 +1824,7 @@ Tile* Area::loadTile(ALLEGRO_FILE *f)
 void Area::save(std::string filename)
 {
 	gzFile f = NULL;
-	f = gzopen(filename.c_str(), "wb");
+	f = my_gzopen(filename.c_str(), "wb9");
 	if (!f)
 		throw WriteError();
 
@@ -1840,11 +1840,11 @@ void Area::save(std::string filename)
 			writeTile(i, f);
 	}
 	catch (WriteError) {
-		gzclose(f);
+		my_gzclose(f);
 		throw WriteError();
 	}
 
-	gzclose(f);
+	my_gzclose(f);
 }
 
 std::string Area::getName()

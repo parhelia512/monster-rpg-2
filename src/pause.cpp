@@ -678,10 +678,12 @@ static bool choose_save_slot(int num, bool exists, void *data)
 }
 
 // return false on quit
-bool pause(bool can_save, bool change_music_volume, std::string map_name)
+bool pause(bool can_save, bool change_music_volume, std::string map_name, bool show_ad)
 {
 #ifdef ADMOB
-	showAd();
+	if (show_ad) {
+		showAd();
+	}
 #endif
 	/* Save a screenshot in case user saves their game */
 	if (in_map) {

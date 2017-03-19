@@ -63,8 +63,6 @@
 		966BD1B11CFFCF1B002D049A /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1AB1CFFCF1B002D049A /* libfreetype.a */; };
 		966BD1B21CFFCF1B002D049A /* liblua5.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1AC1CFFCF1B002D049A /* liblua5.2.a */; };
 		966BD1B31CFFCF1B002D049A /* libphysfs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1AD1CFFCF1B002D049A /* libphysfs.a */; };
-		966BD1B41CFFCF1B002D049A /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1AE1CFFCF1B002D049A /* libpng.a */; };
-		966BD1B61CFFD04F002D049A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1B51CFFD04F002D049A /* libz.tbd */; };
 		969874D81A6377A200E0FD12 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660CECD1A6377260064D34F /* Accelerate.framework */; };
 		969874DA1A63789700E0FD12 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969874D91A63789700E0FD12 /* MobileCoreServices.framework */; };
 		96BC707A1E782C7A001A1DFB /* script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9650E7E71B6B25090030C5EB /* script.cpp */; };
@@ -111,13 +109,11 @@
 		96BC70A31E782C7A001A1DFB /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9650E7DA1B6B25090030C5EB /* Input.cpp */; };
 		96BC70A41E782C7A001A1DFB /* mygamecentervc.m in Sources */ = {isa = PBXBuildFile; fileRef = 9650E7E21B6B25090030C5EB /* mygamecentervc.m */; };
 		96BC70A51E782C7A001A1DFB /* debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9650E7D11B6B25090030C5EB /* debug.cpp */; };
-		96BC70A71E782C7A001A1DFB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1B51CFFD04F002D049A /* libz.tbd */; };
 		96BC70A81E782C7A001A1DFB /* libAllegro5_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1A91CFFCF1B002D049A /* libAllegro5_iOS.a */; };
 		96BC70A91E782C7A001A1DFB /* libbass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1AA1CFFCF1B002D049A /* libbass.a */; };
 		96BC70AA1E782C7A001A1DFB /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1AB1CFFCF1B002D049A /* libfreetype.a */; };
 		96BC70AB1E782C7A001A1DFB /* liblua5.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1AC1CFFCF1B002D049A /* liblua5.2.a */; };
 		96BC70AC1E782C7A001A1DFB /* libphysfs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1AD1CFFCF1B002D049A /* libphysfs.a */; };
-		96BC70AD1E782C7A001A1DFB /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966BD1AE1CFFCF1B002D049A /* libpng.a */; };
 		96BC70AE1E782C7A001A1DFB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9650E8361B6B2C030030C5EB /* GameKit.framework */; };
 		96BC70AF1E782C7A001A1DFB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969874D91A63789700E0FD12 /* MobileCoreServices.framework */; };
 		96BC70B01E782C7A001A1DFB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660CECD1A6377260064D34F /* Accelerate.framework */; };
@@ -128,6 +124,8 @@
 		96BC70B61E782C7A001A1DFB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9660CE3E1A6369970064D34F /* Images.xcassets */; };
 		96BC70BE1E782EE6001A1DFB /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BC70BD1E782EE6001A1DFB /* GoogleMobileAds.framework */; };
 		96BC70C01E783453001A1DFB /* apple.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BC70BF1E783453001A1DFB /* apple.m */; };
+		96E0BB5D1E7EA33600D7B036 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E0BB5C1E7EA33600D7B036 /* libz.tbd */; };
+		96E0BB641E7EA6DC00D7B036 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E0BB631E7EA6DC00D7B036 /* libpng.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -192,12 +190,12 @@
 		966BD1AB1CFFCF1B002D049A /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../../libs/ios/lib/libfreetype.a; sourceTree = "<group>"; };
 		966BD1AC1CFFCF1B002D049A /* liblua5.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua5.2.a; path = ../../../libs/ios/lib/liblua5.2.a; sourceTree = "<group>"; };
 		966BD1AD1CFFCF1B002D049A /* libphysfs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libphysfs.a; path = ../../../libs/ios/lib/libphysfs.a; sourceTree = "<group>"; };
-		966BD1AE1CFFCF1B002D049A /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../../../libs/ios/lib/libpng.a; sourceTree = "<group>"; };
-		966BD1B51CFFD04F002D049A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		969874D91A63789700E0FD12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		96BC70BA1E782C7A001A1DFB /* Monster RPG 2 Unleashed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Monster RPG 2 Unleashed.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BC70BD1E782EE6001A1DFB /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = ../../../libs/ios/lib/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		96BC70BF1E783453001A1DFB /* apple.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = apple.m; path = ../../src/apple.m; sourceTree = "<group>"; };
+		96E0BB5C1E7EA33600D7B036 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		96E0BB631E7EA6DC00D7B036 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../../../libs/ios/lib/libpng.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,13 +203,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				966BD1B61CFFD04F002D049A /* libz.tbd in Frameworks */,
 				966BD1AF1CFFCF1B002D049A /* libAllegro5_iOS.a in Frameworks */,
 				966BD1B01CFFCF1B002D049A /* libbass.a in Frameworks */,
 				966BD1B11CFFCF1B002D049A /* libfreetype.a in Frameworks */,
 				966BD1B21CFFCF1B002D049A /* liblua5.2.a in Frameworks */,
 				966BD1B31CFFCF1B002D049A /* libphysfs.a in Frameworks */,
-				966BD1B41CFFCF1B002D049A /* libpng.a in Frameworks */,
 				9650E8371B6B2C030030C5EB /* GameKit.framework in Frameworks */,
 				969874DA1A63789700E0FD12 /* MobileCoreServices.framework in Frameworks */,
 				969874D81A6377A200E0FD12 /* Accelerate.framework in Frameworks */,
@@ -224,14 +220,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96E0BB641E7EA6DC00D7B036 /* libpng.a in Frameworks */,
+				96E0BB5D1E7EA33600D7B036 /* libz.tbd in Frameworks */,
 				96BC70BE1E782EE6001A1DFB /* GoogleMobileAds.framework in Frameworks */,
-				96BC70A71E782C7A001A1DFB /* libz.tbd in Frameworks */,
 				96BC70A81E782C7A001A1DFB /* libAllegro5_iOS.a in Frameworks */,
 				96BC70A91E782C7A001A1DFB /* libbass.a in Frameworks */,
 				96BC70AA1E782C7A001A1DFB /* libfreetype.a in Frameworks */,
 				96BC70AB1E782C7A001A1DFB /* liblua5.2.a in Frameworks */,
 				96BC70AC1E782C7A001A1DFB /* libphysfs.a in Frameworks */,
-				96BC70AD1E782C7A001A1DFB /* libpng.a in Frameworks */,
 				96BC70AE1E782C7A001A1DFB /* GameKit.framework in Frameworks */,
 				96BC70AF1E782C7A001A1DFB /* MobileCoreServices.framework in Frameworks */,
 				96BC70B01E782C7A001A1DFB /* Accelerate.framework in Frameworks */,
@@ -337,13 +333,13 @@
 		96BC70BC1E782EE5001A1DFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				966BD1B51CFFD04F002D049A /* libz.tbd */,
+				96E0BB631E7EA6DC00D7B036 /* libpng.a */,
+				96E0BB5C1E7EA33600D7B036 /* libz.tbd */,
 				966BD1A91CFFCF1B002D049A /* libAllegro5_iOS.a */,
 				966BD1AA1CFFCF1B002D049A /* libbass.a */,
 				966BD1AB1CFFCF1B002D049A /* libfreetype.a */,
 				966BD1AC1CFFCF1B002D049A /* liblua5.2.a */,
 				966BD1AD1CFFCF1B002D049A /* libphysfs.a */,
-				966BD1AE1CFFCF1B002D049A /* libpng.a */,
 				9650E8361B6B2C030030C5EB /* GameKit.framework */,
 				969874D91A63789700E0FD12 /* MobileCoreServices.framework */,
 				9660CECD1A6377260064D34F /* Accelerate.framework */,

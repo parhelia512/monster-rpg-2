@@ -446,6 +446,16 @@ void showAd()
 		"()V"
 	);
 }
+
+void requestNewInterstitial()
+{
+	_jni_callVoidMethodV(
+		_al_android_get_jnienv(),
+		_al_android_activity_object(),
+		"requestNewInterstitial",
+		"()V"
+	);
+}
 #endif
 
 #if defined OUYA

@@ -10,37 +10,40 @@
 #include <allegro5/allegro_iphone_objc.h>
 
 static GADInterstitial *interstitial;
+static int count = 0;
 
-void requestNewInterstitial()
-{
-	GADRequest *request = [GADRequest request];
-	// Request test ads on devices you specify. Your test device ID is printed to the console when
-	// an ad request is made.
-	//request.testDevices = @[ kGADSimulatorID, @"FIXME-FOR-TESTING" ];
-	[interstitial loadRequest:request];
-}
+void requestNewInterstitial();
 
 @interface Ad_Delegate : NSObject<GADInterstitialDelegate>
 {
 }
-- (void)interstitialDidDismissScreen;
+- (void)interstitialWillDismissScreen:(nonnull GADInterstitial *)ad;
 @end
 
 @implementation Ad_Delegate
-- (void)interstitialDidDismissScreen
+- (void)interstitialWillDismissScreen:(nonnull GADInterstitial *)ad
 {
 	requestNewInterstitial();
 }
 @end
 
-static Ad_Delegate *ad_delegate;
-
-void initAdmob()
+static void *request_thread(void *arg)
 {
-    ad_delegate = [[Ad_Delegate alloc] init];
-	interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-5564002345241286/6446648655"];
-    interstitial.delegate = ad_delegate;
-	requestNewInterstitial();
+	al_rest(5.0);
+	Ad_Delegate *ad_delegate = [[Ad_Delegate alloc] init];
+	interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-5564002345241286/1715397850"];
+	interstitial.delegate = ad_delegate;
+	GADRequest *request = [GADRequest request];
+	// Request test ads on devices you specify. Your test device ID is printed to the console when
+	// an ad request is made.
+	request.testDevices = @[ kGADSimulatorID, @"a7195eca337a92194952837b281b4df2" ];
+	[interstitial loadRequest:request];
+	return NULL;
+}
+
+void requestNewInterstitial()
+{
+	al_run_detached_thread(request_thread, NULL);
 }
 
 void showAd()
@@ -50,9 +53,14 @@ void showAd()
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 		if (interstitial.isReady) {
 			[interstitial presentFromRootViewController:al_iphone_get_window(display).rootViewController];
+			count = 0;
 		}
 		else {
-			requestNewInterstitial();
+			count++;
+			if (count >= 3) {
+				requestNewInterstitial();
+				count = 0;
+			}
 		}
 	}];
 }

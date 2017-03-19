@@ -23,6 +23,9 @@ extern bool loadGame(const char* filename);
 extern void saveTime(char *filename);
 void getSaveStateInfo(int num, SaveStateInfo& info, bool autosave);
 
+gzFile my_gzopen(const char *filename, const char *flags);
+void my_gzclose(gzFile f);
+
 extern unsigned char memory_save[20000];
 extern int memory_save_offset;
 extern bool using_memory_save;

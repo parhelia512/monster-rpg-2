@@ -4,6 +4,10 @@
 #include "java.h"
 #endif
 
+#if defined ALLEGRO_IPHONE && defined ADMOB
+#include "apple.h"
+#endif
+
 #include "svg.hpp"
 
 #ifdef STEAMWORKS
@@ -108,6 +112,7 @@ static void create_network_thread()
 			al_start_thread(network_thread);
 		}
 	}
+	requestNewInterstitial();
 }
 
 static void destroy_network_thread()
@@ -1565,7 +1570,7 @@ static void run()
 			if (do_pause_game)
 			{
 				do_pause_game = false;
-				bool ret = pause(true, false);
+				bool ret = pause(true, false, "", false);
 				if (!ret) {
 					prepareForScreenGrab1();
 					main_draw();
