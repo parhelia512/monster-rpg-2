@@ -36,7 +36,7 @@ static void *request_thread(void *arg)
 	GADRequest *request = [GADRequest request];
 	// Request test ads on devices you specify. Your test device ID is printed to the console when
 	// an ad request is made.
-	request.testDevices = @[ kGADSimulatorID, @"FIXME-FOR-TESTING" ];
+	//request.testDevices = @[ kGADSimulatorID, @"FIXME-FOR-TESTING" ];
 	[interstitial loadRequest:request];
 	return NULL;
 }
