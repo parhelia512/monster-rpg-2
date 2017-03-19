@@ -238,4 +238,9 @@ extern bool hide_mouse;
 void do_milestone(int num, bool visual);
 #endif
 
+#ifdef ADMOB
+void *network_connection_test_thread(ALLEGRO_THREAD *thread, void *arg);
+extern ALLEGRO_THREAD *network_thread;
+#endif
+
 #endif

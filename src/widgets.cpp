@@ -22,6 +22,44 @@ int show_item_info_on_flip = -1;
 
 extern bool menu_pressed;
 
+#if defined ADMOB
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+
+bool network_is_connected = true;
+ALLEGRO_THREAD *network_thread;
+
+void *network_connection_test_thread(ALLEGRO_THREAD *thread, void *arg)
+{
+	struct addrinfo *a;
+
+	int delay = 0;
+
+	while (al_get_thread_should_stop(thread) == false) {
+		if (delay == 0) {
+			a = 0;
+			int result = getaddrinfo("nooskewl.ca", "80", NULL, &a);
+			if (result || a == 0) {
+				network_is_connected = false;
+				delay = 3;
+			}
+			else {
+				network_is_connected = true;
+				delay = 60;
+			}
+			freeaddrinfo(a);
+		}
+		else {
+			delay--;
+			al_rest(1.0);
+		}
+	}
+
+	return NULL;
+}
+#endif
+
 void loadIcons()
 {
 	#define N 40
@@ -602,9 +640,21 @@ void showPlayerInfo_ptr(Player *p)
 	notify(playerMiniInfoDraw_nobattle, p);
 }
 
-void notify(std::string msg1, std::string msg2, std::string msg3)
+void notify(std::string msg1, std::string msg2, std::string msg3, bool is_network_test)
 {
 	if (!inited) return;
+
+	if (is_network_test) {
+		if (network_is_connected) {
+			return;
+		}
+	}
+
+	std::string orig_msg1 = msg1;
+	std::string orig_msg2 = msg2;
+
+	int network_stage = 0;
+	int network_count = 0;
 
 	dpad_off();
 	
@@ -656,7 +706,38 @@ void notify(std::string msg1, std::string msg2, std::string msg3)
 			}
 			if (tguiUpdate() == w1) {
 				playPreloadedSample("select.ogg");
-				goto done;
+				if (is_network_test) {
+					if (is_network_test) {
+						if (network_stage == 0) {
+							network_stage = 1;
+							network_count = 0;
+							msg1 = _t("Testing connection...");
+							msg2 = "";
+						}
+						else {
+							network_stage = 0;
+							msg1 = orig_msg1;
+							msg2 = orig_msg2;
+						}
+					}
+				}
+				else {
+					goto done;
+				}
+			}
+
+			if (is_network_test) {
+				if (network_is_connected) {
+					goto done;
+				}
+				if (network_stage == 1) {
+					network_count++;
+					if (network_count >= 30*60) { // 30 seconds...
+						network_stage = 0;
+						msg1 = orig_msg1;
+						msg2 = orig_msg2;
+					}
+				}
 			}
 		}
 

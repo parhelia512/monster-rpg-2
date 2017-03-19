@@ -99,43 +99,23 @@ bool prompt_for_close_on_next_flip = false;
 
 bool menu_pressed = false;
 
-#if defined ADMOB && defined ALLEGRO_IPHONE
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netdb.h>
-
-bool network_is_connected = true;
-bool network_thread_is_running = false;
-bool exit_network_thread = false;
-
-static void *network_connection_test_thread(void *arg)
+#ifdef ADMOB
+static void create_network_thread()
 {
-	struct addrinfo *a;
-
-	while (exit_network_thread == false) {
-		a = 0;
-		int result = getaddrinfo("nooskewl.ca", "80", NULL, &a);
-		double delay;
-		if (result || a == 0) {
-			network_is_connected = false;
-			delay = 3.0;
+	while (network_thread == NULL) {
+		network_thread = al_create_thread(network_connection_test_thread, NULL);
+		if (network_thread) {
+			al_start_thread(network_thread);
 		}
-		else {
-			network_is_connected = true;
-			delay = 60.0;
-		}
-		al_rest(delay);
-		freeaddrinfo(a);
 	}
-	
-	exit_network_thread = false;
-
-	return NULL;
 }
 
-static bool connected_to_internet()
+static void destroy_network_thread()
 {
-	return network_is_connected;
+	if (network_thread) {
+		al_destroy_thread(network_thread);
+		network_thread = NULL;
+	}
 }
 #endif
 
@@ -165,7 +145,9 @@ void switch_in()
 	switched_in = true;
 	music_replayed = false;
 }
+#endif
 
+#if defined ALLEGRO_ANDROID
 void switch_out()
 {
 	old_music_name = musicName;
@@ -482,9 +464,7 @@ SteamAPI_RunCallbacks();
 
 #ifdef ADMOB
 	if (check_internet_connection) {
-		while (connected_to_internet() == false) {
-			notify(_t("Please connect"), _t("to the internet..."), "");
-		}
+		notify(_t("Please connect"), _t("to the internet..."), "", true); // this returns immediately if connected, else blocks
 	}
 #endif
 
@@ -1094,6 +1074,7 @@ top:
 #if defined ALLEGRO_IPHONE
 		else if (event.type == ALLEGRO_EVENT_DISPLAY_SWITCH_OUT)
 		{
+			destroy_network_thread();
 			do_pause_game = should_pause_game();
 			if (do_pause_game || in_pause) {
 				backup_music_volume = 0.5;
@@ -1110,6 +1091,7 @@ top:
 		}
 		else if (event.type == ALLEGRO_EVENT_DISPLAY_SWITCH_IN)
 		{
+			create_network_thread();
 			setMusicVolume(backup_music_volume);
 			setAmbienceVolume(backup_ambience_volume);
 			switchiOSKeyboardIn();
@@ -1128,15 +1110,18 @@ top:
 
 #ifdef ALLEGRO_ANDROID
 		else if (event.type == ALLEGRO_EVENT_DISPLAY_SWITCH_IN) {
+			create_network_thread();
 			switch_in();
 		}
 		else if (event.type == ALLEGRO_EVENT_DISPLAY_SWITCH_OUT) {
+			destroy_network_thread();
 			switch_out();
 		}
 #endif
 
 #if defined ALLEGRO_IPHONE || defined ALLEGRO_ANDROID
 		else if (event.type == ALLEGRO_EVENT_DISPLAY_HALT_DRAWING) {
+			destroy_network_thread();
 			if (in_shooter && shooter_paused) {
 				break_shooter_pause = true;
 			}
@@ -1170,9 +1155,11 @@ top:
 				}
 #ifdef ALLEGRO_ANDROID
 				else if (event.type == ALLEGRO_EVENT_DISPLAY_SWITCH_IN) {
+					create_network_thread();
 					switch_in();
 				}
 				else if (event.type == ALLEGRO_EVENT_DISPLAY_SWITCH_OUT) {
+					destroy_network_thread();
 					switch_out();
 				}
 #endif
@@ -1239,6 +1226,8 @@ top:
 #endif
 			al_start_timer(logic_timer);
 			al_start_timer(draw_timer);
+
+			create_network_thread();
 		}
 		else {
 		}
@@ -1921,8 +1910,8 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-#if defined ADMOB && defined ALLEGRO_IPHONE
-	al_run_detached_thread(network_connection_test_thread, NULL);
+#ifdef ADMOB
+	create_network_thread();
 #endif
 
 #ifndef ALLEGRO_ANDROID
@@ -2296,13 +2285,6 @@ int main(int argc, char *argv[])
 
 #ifndef ALLEGRO_WINDOWS
 	al_unlock_mutex(wait_mutex);
-#endif
-
-#if defined ADMOB && defined ALLEGRO_IPHONE
-	exit_network_thread = true;
-	while (exit_network_thread == true) {
-		// just wait...
-	}
 #endif
 
 	destroy();

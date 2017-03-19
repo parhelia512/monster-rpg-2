@@ -22,7 +22,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdListener;
 import android.content.IntentSender.SendIntentException;
 import android.content.DialogInterface;
-import java.net.InetAddress;
 
 public class MO2Activity extends AllegroActivity implements ConnectionCallbacks, OnConnectionFailedListener
 {
@@ -45,7 +44,6 @@ public class MO2Activity extends AllegroActivity implements ConnectionCallbacks,
 
 	MyBroadcastReceiver bcr;
 	InterstitialAd mInterstitialAd;
-	boolean connected = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -66,40 +64,6 @@ public class MO2Activity extends AllegroActivity implements ConnectionCallbacks,
 		});
 
 		requestNewInterstitial();
-
-		boolean thread_started = false;
-		do {
-			try {
-				Thread t = new Thread(new Runnable() {
-					public void run() {
-						while (true) {
-							try {
-								connected = InetAddress.getByName("nooskewl.ca").isReachable(30000);
-							}
-							catch (Exception e) {
-								connected = false;
-							}
-							int delay;
-							if (connected == true) {
-								delay = 60000;
-							}
-							else {
-								delay = 3000;
-							}
-							try {
-								Thread.sleep(delay);
-							}
-							catch (Exception e) {
-							}
-						}
-					}
-				});
-				t.start();
-				thread_started = true;
-			}
-			catch (Exception e) {
-			}
-		} while (thread_started == false);
 	}
 	
 	public void onPause() {
@@ -300,11 +264,6 @@ public class MO2Activity extends AllegroActivity implements ConnectionCallbacks,
 				}
 			}
 		});
-	}
-
-	public boolean connected_to_internet()
-	{
-		return connected;
 	}
 }
 
