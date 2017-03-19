@@ -1155,7 +1155,6 @@ top:
 				}
 #ifdef ALLEGRO_ANDROID
 				else if (event.type == ALLEGRO_EVENT_DISPLAY_SWITCH_IN) {
-					create_network_thread();
 					switch_in();
 				}
 				else if (event.type == ALLEGRO_EVENT_DISPLAY_SWITCH_OUT) {
