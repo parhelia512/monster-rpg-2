@@ -248,8 +248,12 @@ public class MO2Activity extends AllegroActivity implements ConnectionCallbacks,
 
 	public void requestNewInterstitial()
 	{
-		AdRequest adRequest = new AdRequest.Builder().addTestDevice("FIXME-FOR-TESTING").build();
-		mInterstitialAd.loadAd(adRequest);
+		runOnUiThread(new Runnable() {
+			public void run() {
+				AdRequest adRequest = new AdRequest.Builder().addTestDevice("FIXME-FOR-TESTING").build();
+				mInterstitialAd.loadAd(adRequest);
+			}
+		});
 	}
 
 	public void showAd()
