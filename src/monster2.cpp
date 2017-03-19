@@ -99,6 +99,46 @@ bool prompt_for_close_on_next_flip = false;
 
 bool menu_pressed = false;
 
+#if defined ADMOB && defined ALLEGRO_IPHONE
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+
+bool network_is_connected = true;
+bool network_thread_is_running = false;
+bool exit_network_thread = false;
+
+static void *network_connection_test_thread(void *arg)
+{
+	struct addrinfo *a;
+
+	while (exit_network_thread == false) {
+		a = 0;
+		int result = getaddrinfo("nooskewl.ca", "80", NULL, &a);
+		double delay;
+		if (result || a == 0) {
+			network_is_connected = false;
+			delay = 3.0;
+		}
+		else {
+			network_is_connected = true;
+			delay = 60.0;
+		}
+		al_rest(delay);
+		freeaddrinfo(a);
+	}
+	
+	exit_network_thread = false;
+
+	return NULL;
+}
+
+static bool connected_to_internet()
+{
+	return network_is_connected;
+}
+#endif
+
 #if defined ALLEGRO_IPHONE || defined ALLEGRO_ANDROID
 static void set_transform()
 {
@@ -1881,6 +1921,10 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
+#if defined ADMOB && defined ALLEGRO_IPHONE
+	al_run_detached_thread(network_connection_test_thread, NULL);
+#endif
+
 #ifndef ALLEGRO_ANDROID
 	int c = argc;
 	char **p = argv;
@@ -2252,6 +2296,13 @@ int main(int argc, char *argv[])
 
 #ifndef ALLEGRO_WINDOWS
 	al_unlock_mutex(wait_mutex);
+#endif
+
+#if defined ADMOB && defined ALLEGRO_IPHONE
+	exit_network_thread = true;
+	while (exit_network_thread == true) {
+		// just wait...
+	}
 #endif
 
 	destroy();
