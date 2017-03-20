@@ -47,8 +47,8 @@ void *network_connection_test_thread(ALLEGRO_THREAD *thread, void *arg)
 			else {
 				network_is_connected = true;
 				delay = 60;
+				freeaddrinfo(a);
 			}
-			freeaddrinfo(a);
 		}
 		else {
 			delay--;
@@ -644,17 +644,20 @@ void notify(std::string msg1, std::string msg2, std::string msg3, bool is_networ
 {
 	if (!inited) return;
 
+#ifdef ADMOB
 	if (is_network_test) {
 		if (network_is_connected) {
 			return;
 		}
 	}
-
 	std::string orig_msg1 = msg1;
 	std::string orig_msg2 = msg2;
 
 	int network_stage = 0;
 	int network_count = 0;
+#else
+	(void)is_network_test;
+#endif
 
 	dpad_off();
 	
@@ -706,6 +709,7 @@ void notify(std::string msg1, std::string msg2, std::string msg3, bool is_networ
 			}
 			if (tguiUpdate() == w1) {
 				playPreloadedSample("select.ogg");
+#ifdef ADMOB
 				if (is_network_test) {
 					if (is_network_test) {
 						if (network_stage == 0) {
@@ -721,11 +725,14 @@ void notify(std::string msg1, std::string msg2, std::string msg3, bool is_networ
 						}
 					}
 				}
-				else {
+				else
+#endif
+				{
 					goto done;
 				}
 			}
 
+#ifdef ADMOB
 			if (is_network_test) {
 				if (network_is_connected) {
 					goto done;
@@ -739,6 +746,7 @@ void notify(std::string msg1, std::string msg2, std::string msg3, bool is_networ
 					}
 				}
 			}
+#endif
 		}
 
 		if (draw_counter > 0) {
