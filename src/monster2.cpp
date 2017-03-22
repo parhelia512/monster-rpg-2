@@ -14,6 +14,11 @@
 #include <steam/steam_api.h>
 #endif
 
+#ifndef ADMOB
+#define create_network_thread()
+#define destroy_network_thread()
+#endif
+
 extern double my_last_shake_time;
 extern ALLEGRO_FONT *my_load_ttf_font(const char *filename, int sz, int flags);
 
