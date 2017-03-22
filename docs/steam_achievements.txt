@@ -1,0 +1,89 @@
+Escape Your Cell
+Escaped the cell in the keep.
+
+Dark Rider
+Met Rider and he joined your party.
+
+Water Monster
+Beat the water monster at the end of the cave.
+
+The Badge
+Traded for the badge.
+
+Rios the Cleric
+Met Rios and he joined your party.
+
+Gunnar the Builder
+Met Gunnar and he joined your party.
+
+The Ring
+Traded for the ring.
+
+The Witch
+Defeated the Witch on the mountain.
+
+Save Flowey
+Beat the Golems attacking Flowey.
+
+The Key
+Traded for the key.
+
+The Medallion
+Traded for the medallion.
+
+Beach Battle
+Defeated the invaders on the beach.
+
+Milk
+Pleased the farmer to get milk.
+
+The Trench
+Blasted a path through the trench to reach the fortress.
+
+Looking Scope
+Used the medallion to get the looking scope.
+
+The Altars
+Drained the pool in the fortress.
+
+Tiggy Battle
+Beat Evil Tiggy in battle.
+
+The Prisoner
+Freed the prisoner in the keep.
+
+Archery
+Killed the goblin horde with bow and arrow.
+
+Recover the Staff
+Recovered the staff at the top of the keep.
+
+Forest Gold
+Found a treasure in the forest.
+
+Possessed Tree
+Found and killed the possessed tree in the jungle.
+
+The Dragon Witch
+Killed the Dragon Witch at the top of the volcano.
+
+Another World
+Travelled to another world.
+
+Tipper
+Met Tipper and he joined your party.
+
+The Light Orb
+Traded for the light orb.
+
+Escaped Staff
+Got the staff from King Albert.
+
+Final Boss
+Beat the final boss.
+
+Into the Sun
+Destroyed the evil staff.
+
+Roll the Credits
+Watched the end-game credits.
