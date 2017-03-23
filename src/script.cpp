@@ -886,6 +886,7 @@ static int CDoShakeDialogue(lua_State *stack)
 		}
 	}
 
+#if 0 // never executed
 	area_panned_x = sx;
 	area_panned_y = sy;
 
@@ -893,6 +894,7 @@ static int CDoShakeDialogue(lua_State *stack)
 
 	lua_pushboolean(stack, false);
 	return 1;
+#endif
 }
 
 

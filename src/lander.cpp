@@ -304,7 +304,7 @@ top:
 					bool done = false;
 
 					unsigned char r1, g1, b1, a1;
-					unsigned char r2, g2, b2, a2;
+					unsigned char r2 = 0, g2 = 0, b2 = 0, a2;
 
 					if (x2 < 0 || y2 < 0 || x2 >= al_get_bitmap_width(land_mem->bitmap) || y2 >= al_get_bitmap_height(land_mem->bitmap)) {
 						done = true;

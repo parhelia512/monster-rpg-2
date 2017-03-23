@@ -495,8 +495,8 @@ void Area::drawObject(int index)
 		getWaterAnimation(tx2, ty2, &anim2, &depth2);
 		if (anim1 != NULL) {
 			bool draw = false;
-			int depth;
-			int y;
+			int depth = 0;
+			int y = 0;
 			if (offsy >= 0 && offsy < depth1) {
 				depth = depth1 - offsy;
 				y = TILE_SIZE-depth;
@@ -515,8 +515,8 @@ void Area::drawObject(int index)
 		}
 		if (anim2 != NULL) {
 			bool draw = false;
-			int depth;
-			int y;
+			int depth = 0;
+			int y = 0;
 			if (offsy > 0) {
 				depth = offsy;
 				if (depth > depth2) depth = depth2;
@@ -975,7 +975,7 @@ void Area::getWaterAnimation(int x, int y, Animation **anim, int *depth)
 	for (int j = 0; j < vecSize; j++) {
 		Tile *tile = tiles[x+y*sizex];
 		bool found = false;
-		int animNum;
+		int animNum = 0;
 		int waterTileNum = waterData[j].tilenum;
 		int i;
 		for (i = 0; i < TILE_LAYERS; i++) {

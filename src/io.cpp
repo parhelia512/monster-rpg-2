@@ -128,7 +128,7 @@ static bool readMilestones(bool* ms, int num, gzFile f)
 			if (i*8+j >= num)
 				break;
 			bool found = false;
-			bool val;
+			bool val = false;
 			for (size_t k = 0; k < forced_milestones.size(); k++) {
 				std::pair<int, bool> &p = forced_milestones[k];
 				if (p.first == (i*8+j)) {

@@ -14,6 +14,11 @@
 #include <steam/steam_api.h>
 #endif
 
+#ifndef ADMOB
+#define create_network_thread()
+#define destroy_network_thread()
+#endif
+
 extern double my_last_shake_time;
 extern ALLEGRO_FONT *my_load_ttf_font(const char *filename, int sz, int flags);
 
@@ -311,6 +316,7 @@ void myTguiIgnore(int type)
 #endif
 }
 
+#if defined ALLEGRO_IPHONE && defined ALLEGRO_ANDROID
 static int find_touch(int touch_id)
 {
 	for (size_t i = 0; i < touches.size(); i++) {
@@ -320,13 +326,13 @@ static int find_touch(int touch_id)
 	
 	return -1;
 }
+#endif
 
 static void process_touch(int x, int y, int touch_id, int type)
 {
 #if !defined ALLEGRO_IPHONE && !defined ALLEGRO_ANDROID
 	return;
-#endif
-	
+#else
 	al_lock_mutex(touch_mutex);
 	if (type == MOUSE_DOWN) {
 		Touch t;
@@ -349,6 +355,7 @@ static void process_touch(int x, int y, int touch_id, int type)
 		}
 	}
 	al_unlock_mutex(touch_mutex);
+#endif    
 }
 
 void clear_touches()

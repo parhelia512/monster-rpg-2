@@ -1214,7 +1214,7 @@ start:
 					int startx;
 					startx = starts[ty];
 					double target_x = (startx + s.distFromSide) * TILE_SIZE;
-					if (abs(target_x-s.x) > 1) {
+					if (fabs(target_x-s.x) > 1) {
 						if (s.x < target_x) {
 							s.x += 0.2 * LOGIC_MILLIS;
 						}
