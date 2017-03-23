@@ -975,7 +975,7 @@ static int real_archery(int *accuracy_pts)
 
 #if !defined ALLEGRO_IPHONE && !defined ALLEGRO_ANDROID
 			bool reset_mouse = false;
-			int reset_x, reset_y;
+			int reset_x = 0, reset_y = 0;
 			if (prompt_for_close_on_next_flip) {
 				reset_mouse = true;
 				ALLEGRO_MOUSE_STATE state;

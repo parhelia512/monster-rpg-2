@@ -82,6 +82,7 @@ const char *getUserResource(const char *fmt, ...)
 	return result;
 }
 
+#if 0
 /*
  * Get the path to the game resources. First checks for a
  * MONSTER_DATA environment variable that points to the resources,
@@ -101,6 +102,7 @@ static char* resourcePath()
 
 	return result;
 }
+#endif
 #endif
 
 const char *getResource(const char *fmt, ...)

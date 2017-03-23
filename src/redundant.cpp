@@ -21,6 +21,7 @@ static float get_trap_peak(int topw, int bottomw, int length)
 	return tan(a) * (topw/2.0f);
 }
 
+#if defined ALLEGRO_ANDROID || defined ALLEGRO_WINDOWS
 static void null_lb(LoadedBitmap *lb)
 {
 	lb->load_type = (LoadType)0;
@@ -36,6 +37,7 @@ static void null_lb(LoadedBitmap *lb)
 	lb->format = 0;
 	lb->delayed = 0;
 }
+#endif
 
 MCOLOR m_map_rgba(int r, int g, int b, int a)
 {

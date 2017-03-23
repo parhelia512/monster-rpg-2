@@ -5,6 +5,7 @@ void debug_message(const char *fmt, ...)
 // FIXME:
 return;
 
+#if 0
 	va_list ap;
 	char msg[1000];
 
@@ -13,4 +14,5 @@ return;
 
 //	printf("%s\n", msg);
 	ALLEGRO_DEBUG("%s", msg);
+#endif
 }

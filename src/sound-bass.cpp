@@ -123,7 +123,7 @@ static QWORD CALLBACK physfs_my_len(void *user)
 static DWORD CALLBACK physfs_my_read(void *buf, DWORD length, void *user)
 {
 	PHYSFS_File *f = (PHYSFS_File *)user;
-	DWORD r = PHYSFS_read(f, buf, 1, length);
+	DWORD r = (DWORD)PHYSFS_read(f, buf, 1, length);
 	return r;
 }
 static BOOL CALLBACK physfs_my_seek(QWORD offset, void *user)
@@ -218,7 +218,7 @@ static unsigned char *load_from_zip(std::string filename, int *ret_size, bool te
 	if (f == NULL) {
 		return NULL;
 	}
-	long size = al_fsize(f);
+	long size = (long)al_fsize(f);
 	unsigned char *bytes;
 	int extra = terminate_with_0;
 
@@ -296,7 +296,7 @@ MSAMPLE loadSample(std::string name)
 	int total_read = 0;
 	int bufsize = 0;
 	DWORD read = 0;
-	unsigned char *buf;
+	unsigned char *buf = NULL;
 	do {
 		if (bufsize == 0) {
 			bufsize += SZ;
