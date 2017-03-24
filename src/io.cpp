@@ -143,13 +143,13 @@ static bool readMilestones(bool* ms, int num, gzFile f)
 			else {
 				ms[i*8+j] = c & 0x80;
 			}
-//#if defined ALLEGRO_IPHONE || defined ALLEGRO_MACOSX
+#if defined ALLEGRO_IPHONE || defined ALLEGRO_MACOSX || defined STEAMWORKS
 			// Make sure achievements get set (Game Center) in
 			// case something went wrong before.
 			if (c & 0x80) {
 				do_milestone(i*8+j, false);
 			}
-//#endif
+#endif
 			c <<= 1;
 		}
 	}

@@ -316,7 +316,7 @@ void myTguiIgnore(int type)
 #endif
 }
 
-#if defined ALLEGRO_IPHONE && defined ALLEGRO_ANDROID
+#if defined ALLEGRO_IPHONE || defined ALLEGRO_ANDROID
 static int find_touch(int touch_id)
 {
 	for (size_t i = 0; i < touches.size(); i++) {
